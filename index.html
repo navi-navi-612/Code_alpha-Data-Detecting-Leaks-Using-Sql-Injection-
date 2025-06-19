@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Secure SQL Injection Detector</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>🔐 Secure Login Portal</h2>
+
+    <form method="POST" action="/submit">
+      <input type="text" name="username" placeholder="👤 Username" required />
+      <input type="password" name="password" placeholder="🔑 Password" required />
+      <input type="text" name="code" placeholder="🧩 Capability Code" required />
+      <button type="submit">Submit</button>
+    </form>
+
+    {% if status == 'unauthorized' %}
+      <div class="error">❌ Invalid Capability Code</div>
+    {% elif status == 'sqli' %}
+      <div class="error">🚫 SQL Injection Detected!</div>
+    {% elif status == 'success' %}
+      <div class="success">✅ Credentials Submitted Securely!</div>
+    {% endif %}
+  </div>
+</body>
+</html>
